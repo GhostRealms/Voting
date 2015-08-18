@@ -1,0 +1,10 @@
+name: Voting
+version: 1.0
+author: Cliff
+description: 'Stores vote records to a MySQL database and rewards players for voting'
+main: net.ghostrealms.voting.Voting
+depend: [Votifier, Vault]
+commands:
+    vote:
+        description: Gives the user a link to vote for the server
+        usage: /vote
