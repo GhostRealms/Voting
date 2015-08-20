@@ -1,7 +1,7 @@
 package net.ghostrealms.voting;
 
-import com.vexsoftware.votifier.model.VotifierEvent;
 import com.vexsoftware.votifier.model.Vote;
+import com.vexsoftware.votifier.model.VotifierEvent;
 import net.ghostrealms.lib.UUIDLib;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,5 +31,7 @@ public class VotingListener implements Listener
 
         Bukkit.getPlayer(playerUUID).sendMessage(ChatColor.GRAY + "[Realms] " + ChatColor.AQUA + "Thank you for voting! Here is $300!");
 
+        //pay player
+        Voting.instance.econ.depositPlayer(Bukkit.getPlayer(playerUUID), 300);
     }
 }

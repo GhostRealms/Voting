@@ -1,10 +1,12 @@
 package net.ghostrealms.voting;
 
 import net.ghostrealms.lib.Database;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -14,6 +16,8 @@ public class Voting extends JavaPlugin implements CommandExecutor
 {
     public static Voting instance;
     public Database data;
+
+    public Economy econ;
 
     @Override
     public void onEnable()
@@ -36,6 +40,29 @@ public class Voting extends JavaPlugin implements CommandExecutor
 
         //handle /vote
         this.getCommand("vote").setExecutor(this);
+
+        //setup vault stuff
+        if(!setupEconomy()) {
+            this.getLogger().severe("Voting has been disabled because Vault is missing!!!");
+            this.getServer().getPluginManager().disablePlugin(this);
+        }
+    }
+
+    boolean setupEconomy()
+    {
+        if(getServer().getPluginManager().getPlugin("Vault") == null)
+        {
+            return false;
+        }
+
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if(rsp == null)
+        {
+            return false;
+        }
+
+        econ = rsp.getProvider();
+        return econ != null;
     }
 
     @Override
@@ -46,6 +73,6 @@ public class Voting extends JavaPlugin implements CommandExecutor
         sender.sendMessage(ChatColor.GRAY + "Site: " + ChatColor.AQUA + "https://funminecraftservers.com/s/131");
         sender.sendMessage(ChatColor.GRAY + "Site: " + ChatColor.AQUA + "http://minecraftservers.org/server/81610");
         sender.sendMessage(ChatColor.BLUE + "Hint: " + ChatColor.AQUA + "Vote on all 3 sites for an extra reward!!");
-        return false;
+        return true;
     }
 }
