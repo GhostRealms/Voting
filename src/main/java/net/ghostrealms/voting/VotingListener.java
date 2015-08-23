@@ -2,6 +2,7 @@ package net.ghostrealms.voting;
 
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
+import net.ghostrealms.lib.GhostMessage;
 import net.ghostrealms.lib.UUIDLib;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,7 +20,6 @@ public class VotingListener implements Listener
     public void onVote(VotifierEvent event)
     {
         Vote vote = event.getVote();
-        System.out.println(vote.getUsername() + " voted!");
 
         String username = vote.getUsername();
         UUID playerUUID = UUIDLib.getID(vote.getUsername());
@@ -33,5 +33,9 @@ public class VotingListener implements Listener
 
         //pay player
         Voting.instance.econ.depositPlayer(Bukkit.getPlayer(playerUUID), 300);
+
+        //broadcast
+        GhostMessage.broadcast("&dThank you &b" + username + " &dfor voting!", true);
+
     }
 }
