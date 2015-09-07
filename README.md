@@ -1,4 +1,4 @@
-# Voting v1.1
+# Voting v1.1.0
 Spigot 1.8 voting plugin
 
 This plugin is developed for the [Ghost Realms Network](http://ghostrealms.net); and released under the Apache 2 License.
@@ -14,5 +14,5 @@ This plugin is developed for the [Ghost Realms Network](http://ghostrealms.net);
 - Top voters of the month receive a special tag or mark in chat
 
 #Changelog
-1.1
+1.1.0
 - Broadcast in chat when a player votes

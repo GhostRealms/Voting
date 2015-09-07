@@ -70,8 +70,16 @@ public class Voting extends JavaPlugin implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player p = (Player) sender;
+
+
+        if(!p.hasPermission("voting.vote"))
+        {
+            GhostMessage.messagePlayer(p, "&cSorry, you don't have permission", true);
+            return true;
+        }
+
         GhostMessage.messagePlayer(p, "&aVote for the server and get awesome stuff!", true);
-        GhostMessage.messagePlayer(p, "&7Site:&bhttp://topg.org/server-ghost-realms-id412850", true);
+        GhostMessage.messagePlayer(p, "&7Site: &bhttp://topg.org/server-ghost-realms-id412850", true);
         GhostMessage.messagePlayer(p, "&7Site: &bhttps://funminecraftservers.com/s/131", true);
         GhostMessage.messagePlayer(p, "&7Site: &bhttp://minecraftservers.org/server/81610", true);
         GhostMessage.messagePlayer(p, "&9Hint: &bVote on all 3 sites for an extra reward!!", true);
